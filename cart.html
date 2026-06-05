@@ -1,0 +1,213 @@
+<!-- cart.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="style.css"
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div id="header"></div>
+
+    <!-- CART SECTION -->
+    <section class="cart-page">
+
+        <h1 class="cart-title">🛒 Shopping Cart</h1>
+
+        <div class="cart-container">
+
+            <!-- LEFT SIDE -->
+            <div class="cart-items" id="cart-items">
+
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div class="cart-summary">
+
+                <h2>Order Summary</h2>
+
+                <div class="summary-box">
+                    <p>Items Total</p>
+                    <span id="items-total">₹0</span>
+                </div>
+
+                <div class="summary-box">
+                    <p>Delivery</p>
+                    <span>₹99</span>
+                </div>
+
+                <div class="summary-box">
+                    <p>Discount</p>
+                    <span>-₹100</span>
+                </div>
+
+                <hr>
+
+                <div class="summary-total">
+                    <h3>Total</h3>
+                    <h3 id="final-total">₹0</h3>
+                </div>
+
+                <button class="checkout-btn">
+                    Proceed To Checkout
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <div id="footer"></div>
+
+    <script>
+
+    /* LOAD HEADER */
+    fetch("header.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("header").innerHTML = data;
+        updateCartCount();
+    });
+
+    /* LOAD FOOTER */
+    fetch("footer.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("footer").innerHTML = data;
+    });
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    let cartItems = document.getElementById("cart-items");
+
+    let itemsTotal = 0;
+
+    function displayCart(){
+
+        cartItems.innerHTML = "";
+
+        itemsTotal = 0;
+
+        if(cart.length === 0){
+
+            cartItems.innerHTML = `
+                <div class="empty-cart">
+                    <h2>Your Cart Is Empty 😢</h2>
+                    <a href="products.html">
+                        <button>Continue Shopping</button>
+                    </a>
+                </div>
+            `;
+
+            document.getElementById("items-total").innerText = "₹0";
+            document.getElementById("final-total").innerText = "₹0";
+
+            return;
+        }
+
+        cart.forEach((item,index) => {
+
+            itemsTotal += item.price;
+
+            cartItems.innerHTML += `
+            
+            <div class="cart-card">
+
+                <img src="${item.image}" alt="">
+
+                <div class="cart-details">
+                    <h2>${item.name}</h2>
+                    <p>${item.desc}</p>
+
+                    <h3>₹${item.price}</h3>
+
+                    <div class="quantity-box">
+                        <button onclick="decreaseQty(${index})">-</button>
+                        <span>${item.qty}</span>
+                        <button onclick="increaseQty(${index})">+</button>
+                    </div>
+
+                    <button class="remove-btn"
+                    onclick="removeItem(${index})">
+                    Remove
+                    </button>
+                </div>
+
+            </div>
+            `;
+        });
+
+        let finalTotal = itemsTotal + 99 - 100;
+
+        if(finalTotal < 0){
+            finalTotal = itemsTotal;
+        }
+
+        document.getElementById("items-total").innerText =
+        "₹" + itemsTotal;
+
+        document.getElementById("final-total").innerText =
+        "₹" + finalTotal;
+    }
+
+    function removeItem(index){
+
+        cart.splice(index,1);
+
+        localStorage.setItem("cart",
+        JSON.stringify(cart));
+
+        displayCart();
+
+        updateCartCount();
+    }
+
+    function increaseQty(index){
+
+        cart[index].qty++;
+
+        cart[index].price += itemsTotal;
+
+        localStorage.setItem("cart",
+        JSON.stringify(cart));
+
+        displayCart();
+    }
+
+    function decreaseQty(index){
+
+        if(cart[index].qty > 1){
+
+            cart[index].qty--;
+
+            cart[index].price -= itemsTotal;
+
+            localStorage.setItem("cart",
+            JSON.stringify(cart));
+
+            displayCart();
+        }
+    }
+
+    function updateCartCount(){
+
+        let count = document.getElementById("cart-count");
+
+        if(count){
+            count.innerText = cart.length;
+        }
+    }
+
+    displayCart();
+
+    </script>
+<script src="WEB.js"></script>
+</body>
+</html>

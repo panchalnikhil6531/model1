@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NIKE</title>
+
+  <!-- CSS File Link -->
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ad-popup" id="adPopup">
+
+    <div class="popup-box">
+
+        <!-- CLOSE -->
+        <span class="close-popup"
+        onclick="closePopup()">
+
+            &times;
+
+        </span>
+
+        <!-- OFFER -->
+        <div class="offer-badge">
+            BIG SALE
+        </div>
+
+        <!-- LEFT IMAGE -->
+        <div class="popup-image">
+
+            <img src="image/img1.png"
+            alt="Nike Shoes">
+
+        </div>
+
+        <!-- RIGHT CONTENT -->
+        <div class="popup-content">
+
+            <h1> 50% OFF</h1>
+
+            <h2>Premium Nike Collection</h2>
+
+            <p>
+                Limited time offer on all
+                trendy shoes & sports collections.
+            </p>
+
+            <div class="coupon">
+
+                Use Code :
+                <span>NIKE50</span>
+
+            </div>
+
+            <!-- BUTTONS -->
+            <div class="popup-buttons">
+
+                <a href="products.html"
+                class="shop-btn">
+
+                    Shop Now
+
+                </a>
+
+                <button class="later-btn"
+                onclick="closePopup()">
+
+                    Maybe Later
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+    <div id="header"></div>
+
+  <!-- HEADER -->
+ <form action="index.html"></form>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Welcome to ShopEase</h1>
+    <p>Discover Trendy Fashion & Premium Collections</p>
+    <a href="products.html" class="hero-btn">Shop Now</a>
+  </div>
+</section>
+
+<!-- PRODUCTS SECTION -->
+<section class="products">
+  <h2 class="section-title">Featured Products</h2>
+  <!-- SCROLL BUTTONS -->
+
+<button id="scrollTopBtn">⬆</button>
+<button id="scrollBottomBtn">⬇</button>
+
+  <div class="product-container">
+    <!-- CARD 1 -->
+    <div class="card">
+      <div class="product-img">
+        <img src="image/img1.png" alt="Shoes">
+      </div>
+
+      <div class="product-info">
+        <h3>Casual Shoes</h3>
+        <p>Comfortable & stylish everyday shoes.</p>
+
+        <div class="card-bottom">
+          <span class="price">₹4999</span>
+          <button onclick="addToCart('Casual Shoes',4999,'image/img1.png','Comfortable stylish shoes')">Add To Cart
+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="card">
+      <div class="product-img">
+        <img src="image/img2.png" alt="Shoes">
+      </div>
+
+      <div class="product-info">
+        <h3>Running Shoes</h3>
+        <p>Lightweight shoes for sports & running.</p>
+
+        <div class="card-bottom">
+          <span class="price">₹9999</span>
+          <button onclick="addToCart('Casual Shoes',9999,'image/img2.png','Comfortable stylish shoes')">Add To Cart
+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="card">
+      <div class="product-img">
+        <img src="image/img3.png" alt="Shoes">
+      </div>
+
+      <div class="product-info">
+        <h3>Sport Shoes</h3>
+        <p>Premium quality shoes with modern design.</p>
+
+        <div class="card-bottom">
+          <span class="price">₹5999</span>
+          <button onclick="addToCart('Casual Shoes',5999,'image/img3.png','Comfortable stylish shoes')">Add To Cart
+</button>
+          
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+ 
+  <div id="footer"></div>
+  <script src="WEB.js"></script>
+  <script src="cart.js"></script>
+  
+
+    
+</body>
+</html>
